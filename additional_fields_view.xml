@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--This is the list view for the employees--> 
+		<record model="ir.ui.view" id="custom_hr_fields_tree">
+			<field name="model">hr.employee</field>
+        	<field name="inherit_id" ref="hr.view_employee_tree"/>
+        	<field name="arch" type="xml">
+            		<xpath expr="/tree/field[@name='name']" position="after">
+						<field name="gender"/>
+						<field name="fileno" string="Personal File No."/>
+					</xpath>
+					<xpath expr="/tree/field[@name='job_id']" position="after">
+                        <field name="birthday"/>
+                        <field name="first_appointment_date"/>
+                        <field name="date_retirement"/>						
+					</xpath>
+                    <field name='department_id' position='attributes'>
+                        <attribute name="invisible">1</attribute>
+                    </field>
+        	</field>
+        </record>
+
+        <!--This is the beginning of the Form view for the emploees-->
+        <record id="custom_hr_fields_form" model="ir.ui.view">
+        	<field name="name">custom.hr.fields.form</field>         
+           	<field name="model">hr.employee</field>
+           	<field name="view_type">form</field>
+           	<field name="arch" type="xml">
+           		<form string="Record of Service">
+           			<sheet string="Record of Service">
+	           			<group>
+	           				<field name="image" widget='image' class="oe_avatar" options='{"preview_image":"image_medium"}'/>
+	           				<field name="name" string="Name of Officer"/>
+	           				<field name="fileno" string="Personal File Number"/>
+	           				<field name="gender" string="Sex"/>
+                            <field name="birthday"/>
+	           			</group>
+	           			<group string="Appointment:">
+           					<field name="first_appointment_date"/>
+           					<field name="present_appointment_date"/>
+                            <field name="date_retirement"/>
+           					<field name="appointment_terms"/>
+	           			</group>
+	           			<group name='qualifications'>
+                            <field name="education_ids" string="Qualifications"/>
+	           			</group>
+	           			<group>
+	           				<field name="salary_grade_level"/>
+	           			</group>
+	           			<group>
+	           				<field name="domicile"/>
+	           			</group>	           			      				
+	           			<group>
+	           				<field name="address_home_id"/>
+	           			</group>
+                        <group name='nationality'>
+                            <field name="nationality"/>
+                        </group>
+                        <group name='stateoforigin'>
+                            <field name="stateoforigin"/>
+                        </group>
+	           			<group>
+	           				<field name="emp_referees_ids" string="Referees" context="{'default_emp_referees': active_id}"/>
+	           			</group>
+	           			<group>
+	           				<field name="marital"/>
+	           			</group>
+	           			<group>
+		                    <field name="nextofkin_ids" string="Next of Kin"/>
+		                </group>        			
+	           			<group>
+		                    <field name="department_id"/>
+		                </group>
+		                <group>
+		                    <field name="promotion_record_ids"/>
+		                </group>
+		                <group>
+		                    <field name="medical_history_ids"/>
+		                </group>
+		                <group>
+		                    <field name="commendation_ids"/>
+		                </group>
+		                <group>
+		                   <field name='censure_ids'/>
+		                </group>
+		                <group>
+		                    <field name='remarks'/>
+		                </group>
+	            	</sheet>
+            	</form>
+        	</field>       
+        </record>
+
+        <!--Educational Qualifications List View-->
+        <record id="educational_history_tree_view" model='ir.ui.view'>
+            <field name='name'>educational.history.tree.view</field>
+            <field name='model'>educational.history</field>
+            <field name='view_type'>tree</field>
+            <field name='view_mode'>form,tree</field>
+                <field name='arch' type='xml'>
+                    <tree>
+                        <field name='school_name'/>                            
+                        <field name='date_from'/>
+                        <field name='date_to'/>
+                        <field name='course_studied'/>
+                        <field name='quali'/>
+                        <field name='cert_date'/> 
+                    </tree>
+                </field>    
+        </record>
+
+        <!--Educational Qualifications Form View-->
+        <record id="educational_history_form_view" model='ir.ui.view'>
+            <field name='name'>educational.history.form.view</field>
+            <field name='model'>educational.history</field>
+            <field name='view_type'>form</field>
+                <field name='arch' type='xml'>
+                    <form string="Employee's Educational History">
+                        <sheet>
+                            <group>
+                                <field name='school_name'/>
+                                <field name='date_from'/>
+                                <field name='date_to'/>
+                                <field name='course_studied'/>
+                                <field name='quali'/>
+                                <field name='cert_date'/>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>    
+        </record>
+
+        <!--Employees' Referee List View-->
+        <record id="employee_referees_tree_view" model='ir.ui.view'>
+            <field name='name'>employee.referees.tree.view</field>
+            <field name='model'>employee.referees</field>
+            <field name='view_type'>tree</field>
+                <field name='arch' type='xml'>
+                    <tree>
+                        <field name='name'/>
+                        <field name='sex'/>
+                        <field name='address'/>
+                    </tree>
+                </field>    
+        </record>
+
+        <record id="employee_referees_form_view" model='ir.ui.view'>
+            <field name='name'>employee.referees.form.view</field>
+            <field name='model'>employee.referees</field>
+            <field name='view_type'>form</field>
+                <field name='arch' type='xml'>
+                    <form>
+                        <sheet>
+                            <group>
+                                <field name='image' widget="image"/>
+                                <field name='name'/>
+                                <field name='sex'/>
+                                <field name='address'/>
+                                <field name='emp_referees'/>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>    
+        </record>
+
+        <record id="employee_nextofkin_tree_view" model='ir.ui.view'>
+            <field name='name'>employee.nextofkin.tree.view</field>
+            <field name='model'>employee.nextofkin</field>
+            <field name='view_type'>tree</field>
+                <field name='arch' type='xml'>
+                    <tree>
+                        <field name='name'/>                        
+                        <field name='address'/>
+                        <field name='mobile_phone'/>
+                        <field name='rel_staff'/>
+                    </tree>
+                </field>    
+        </record>
+
+         <record id="employee_nextofkin_form_view" model='ir.ui.view'>
+            <field name='name'>employee.nextofkin.form.view</field>
+            <field name='model'>employee.nextofkin</field>
+            <field name='view_type'>form</field>
+                <field name='arch' type='xml'>
+                    <form>
+                        <tree>
+                            <group>
+                                <field name='image' widget="image"/>
+                                <field name='name'/>                                
+                                <field name='address'/>
+                                <field name='mobile_phone'/>
+                                <field name='rel_staff'/>
+                            </group>
+                        </tree>
+                    </form>
+                </field>    
+        </record>
+
+        <record id="promotion_records_tree_view" model='ir.ui.view'>
+            <field name='name'>promotion.records.tree.view</field>
+            <field name='model'>promotion.records</field>
+            <field name='view_type'>tree</field>
+            <field name='view_mode'>form,tree</field>
+                <field name='arch' type='xml'>
+                    <tree>
+                        <field name='type'/>                            
+                        <field name='designation_from'/>
+                        <field name='designation_from_date'/>
+                        <field name='designation_to'/>
+                        <field name='designation_to_date'/>
+                    </tree>
+                </field>    
+        </record>
+
+        <record id="promotion_history_form_view" model='ir.ui.view'>
+            <field name='name'>promotion.records.form.view</field>
+            <field name='model'>promotion.records</field>
+            <field name='view_type'>form</field>
+                <field name='arch' type='xml'>
+                    <form string="Employee's Promotion History">
+                        <sheet>
+                            <!--Header Row-->
+                            <div class='row col-xs-12'>
+                                <!--First Column-->
+                                <div class="col-xs-2"><strong>Type</strong></div>
+                                <!--Second Column-->
+                                <div class="col-xs-2"><strong>From</strong></div>
+                                <!--Third Column-->
+                                <div class="col-xs-2"><strong>Date</strong></div>
+                                <!--Fourth Column-->
+                                <div class="col-xs-2"><strong>To</strong></div>
+                                <!--Fifth Column-->
+                                <div class="col-xs-2"><strong>Date</strong></div>
+                            </div>
+
+                            <!--Second Row-->
+                            <div>
+                                <!--First Column-->
+                                <div class="col-xs-2"><field name='type'/></div>
+                                <!--Second Column-->
+                                <div class="col-xs-2"><field name='designation_from'/></div>
+                                <!--Third Column-->                                
+                                <div class="col-xs-2"><field name='designation_from_date'/></div>
+                                <!--Fourth Column-->
+                                <div class="col-xs-2"><field name='designation_to'/></div>
+                                <!--Fifth Column-->
+                                <div class="col-xs-2"><field name='designation_to_date'/></div>
+                            </div>
+
+                        </sheet>
+                    </form>
+                </field>    
+        </record>
+
+        <record id="medical_history_tree_view" model='ir.ui.view'>
+            <field name='name'>medical.history.tree.view</field>
+            <field name='model'>medical.history</field>
+            <field name='view_type'>tree</field>
+                <field name='arch' type='xml'>
+                    <tree>
+                        <field name='nature'/>                        
+                        <field name='date_from'/>
+                        <field name='date_to'/>
+                    </tree>
+                </field>    
+        </record>
+
+         <record id="medical_history_form_view" model='ir.ui.view'>
+            <field name='name'>medical.history.form.view</field>
+            <field name='model'>medical.history</field>
+            <field name='view_type'>form</field>
+                <field name='arch' type='xml'>
+                    <form>
+                        <tree>
+                            <group>
+                                <field name='nature'/>
+                                <field name='date_from'/>                                
+                                <field name='date_to'/>
+                            </group>
+                        </tree>
+                    </form>
+                </field>    
+        </record>
+        
+        <record id="employee_commendation_tree_view" model='ir.ui.view'>
+            <field name='name'>employee.commendation.tree.view</field>
+            <field name='model'>employee.commendation</field>
+            <field name='view_type'>tree</field>
+                <field name='arch' type='xml'>
+                    <tree>
+                        <field name='description'/>                        
+                        <field name='by_whom'/>
+                        <field name='date_commendation'/>
+                        <!--<field name='result'/>-->
+                    </tree>
+                </field>    
+        </record>
+
+         <record id="employee_commendation_form_view" model='ir.ui.view'>
+            <field name='name'>employee.commendation.form.view</field>
+            <field name='model'>employee.commendation</field>
+            <field name='view_type'>form</field>
+                <field name='arch' type='xml'>
+                    <form>
+                        <tree>
+                            <group>
+                                <field name='description'/>
+                                <field name='by_whom'/>                                
+                                <field name='date_commendation'/>
+                                <!--<field name='result'/>-->
+                            </group>
+                        </tree>
+                    </form>
+                </field>    
+        </record>
+
+        <record id="employee_censure_tree_view" model='ir.ui.view'>
+            <field name='name'>employee.censure.tree.view</field>
+            <field name='model'>employee.censure</field>
+            <field name='view_type'>tree</field>
+                <field name='arch' type='xml'>
+                    <tree>
+                        <field name='description'/>                        
+                        <field name='by_whom'/>
+                        <field name='date_censure'/>
+                        <!--<field name='result'/>-->
+                    </tree>
+                </field>    
+        </record>
+
+         <record id="employee_censure_form_view" model='ir.ui.view'>
+            <field name='name'>employee.censure.form.view</field>
+            <field name='model'>employee.censure</field>
+            <field name='view_type'>form</field>
+                <field name='arch' type='xml'>
+                    <form>
+                        <tree>
+                            <group>
+                                <field name='description'/>
+                                <field name='by_whom'/>                                
+                                <field name='date_censure'/>
+                                <!--<field name='result'/>-->
+                            </group>
+                        </tree>
+                    </form>
+                </field>    
+        </record>    
+    </data> 
+</odoo>
