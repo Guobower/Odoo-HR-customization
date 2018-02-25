@@ -25,7 +25,6 @@
         <record id="custom_hr_fields_form" model="ir.ui.view">
         	<field name="name">custom.hr.fields.form</field>         
            	<field name="model">hr.employee</field>
-           	<field name="view_type">form</field>
            	<field name="arch" type="xml">
            		<form string="Record of Service">
            			<sheet string="Record of Service">
@@ -96,8 +95,6 @@
         <record id="educational_history_tree_view" model='ir.ui.view'>
             <field name='name'>educational.history.tree.view</field>
             <field name='model'>educational.history</field>
-            <field name='view_type'>tree</field>
-            <field name='view_mode'>form,tree</field>
                 <field name='arch' type='xml'>
                     <tree>
                         <field name='school_name'/>                            
@@ -114,7 +111,6 @@
         <record id="educational_history_form_view" model='ir.ui.view'>
             <field name='name'>educational.history.form.view</field>
             <field name='model'>educational.history</field>
-            <field name='view_type'>form</field>
                 <field name='arch' type='xml'>
                     <form string="Employee's Educational History">
                         <sheet>
@@ -135,7 +131,6 @@
         <record id="employee_referees_tree_view" model='ir.ui.view'>
             <field name='name'>employee.referees.tree.view</field>
             <field name='model'>employee.referees</field>
-            <field name='view_type'>tree</field>
                 <field name='arch' type='xml'>
                     <tree>
                         <field name='name'/>
@@ -148,7 +143,6 @@
         <record id="employee_referees_form_view" model='ir.ui.view'>
             <field name='name'>employee.referees.form.view</field>
             <field name='model'>employee.referees</field>
-            <field name='view_type'>form</field>
                 <field name='arch' type='xml'>
                     <form>
                         <sheet>
@@ -167,7 +161,6 @@
         <record id="employee_nextofkin_tree_view" model='ir.ui.view'>
             <field name='name'>employee.nextofkin.tree.view</field>
             <field name='model'>employee.nextofkin</field>
-            <field name='view_type'>tree</field>
                 <field name='arch' type='xml'>
                     <tree>
                         <field name='name'/>                        
@@ -181,7 +174,6 @@
          <record id="employee_nextofkin_form_view" model='ir.ui.view'>
             <field name='name'>employee.nextofkin.form.view</field>
             <field name='model'>employee.nextofkin</field>
-            <field name='view_type'>form</field>
                 <field name='arch' type='xml'>
                     <form>
                         <tree>
@@ -200,8 +192,6 @@
         <record id="promotion_records_tree_view" model='ir.ui.view'>
             <field name='name'>promotion.records.tree.view</field>
             <field name='model'>promotion.records</field>
-            <field name='view_type'>tree</field>
-            <field name='view_mode'>form,tree</field>
                 <field name='arch' type='xml'>
                     <tree>
                         <field name='type'/>                            
@@ -216,7 +206,6 @@
         <record id="promotion_history_form_view" model='ir.ui.view'>
             <field name='name'>promotion.records.form.view</field>
             <field name='model'>promotion.records</field>
-            <field name='view_type'>form</field>
                 <field name='arch' type='xml'>
                     <form string="Employee's Promotion History">
                         <sheet>
@@ -256,7 +245,6 @@
         <record id="medical_history_tree_view" model='ir.ui.view'>
             <field name='name'>medical.history.tree.view</field>
             <field name='model'>medical.history</field>
-            <field name='view_type'>tree</field>
                 <field name='arch' type='xml'>
                     <tree>
                         <field name='nature'/>                        
@@ -269,7 +257,6 @@
          <record id="medical_history_form_view" model='ir.ui.view'>
             <field name='name'>medical.history.form.view</field>
             <field name='model'>medical.history</field>
-            <field name='view_type'>form</field>
                 <field name='arch' type='xml'>
                     <form>
                         <tree>
@@ -286,13 +273,11 @@
         <record id="employee_commendation_tree_view" model='ir.ui.view'>
             <field name='name'>employee.commendation.tree.view</field>
             <field name='model'>employee.commendation</field>
-            <field name='view_type'>tree</field>
                 <field name='arch' type='xml'>
                     <tree>
                         <field name='description'/>                        
                         <field name='by_whom'/>
                         <field name='date_commendation'/>
-                        <!--<field name='result'/>-->
                     </tree>
                 </field>    
         </record>
@@ -300,7 +285,6 @@
          <record id="employee_commendation_form_view" model='ir.ui.view'>
             <field name='name'>employee.commendation.form.view</field>
             <field name='model'>employee.commendation</field>
-            <field name='view_type'>form</field>
                 <field name='arch' type='xml'>
                     <form>
                         <tree>
@@ -318,13 +302,11 @@
         <record id="employee_censure_tree_view" model='ir.ui.view'>
             <field name='name'>employee.censure.tree.view</field>
             <field name='model'>employee.censure</field>
-            <field name='view_type'>tree</field>
                 <field name='arch' type='xml'>
                     <tree>
                         <field name='description'/>                        
                         <field name='by_whom'/>
                         <field name='date_censure'/>
-                        <!--<field name='result'/>-->
                     </tree>
                 </field>    
         </record>
@@ -332,7 +314,6 @@
          <record id="employee_censure_form_view" model='ir.ui.view'>
             <field name='name'>employee.censure.form.view</field>
             <field name='model'>employee.censure</field>
-            <field name='view_type'>form</field>
                 <field name='arch' type='xml'>
                     <form>
                         <tree>
@@ -340,7 +321,6 @@
                                 <field name='description'/>
                                 <field name='by_whom'/>                                
                                 <field name='date_censure'/>
-                                <!--<field name='result'/>-->
                             </group>
                         </tree>
                     </form>

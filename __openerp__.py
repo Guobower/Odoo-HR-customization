@@ -16,7 +16,8 @@
             "additional_fields_view.xml",
             "designation_view.xml",
             "constituency_view.xml",
-            "res_state_lga_view.xml"
+            "res_state_lga_view.xml",
+            "data/menus.xml",
     ],
     "installable": True,
     "auto_install": False,

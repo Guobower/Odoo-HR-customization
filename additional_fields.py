@@ -8,8 +8,6 @@ class hr_employee(models.Model):
     pensionno = fields.Char('Pension Number')
     bvn = fields.Integer('BVN', size=11)
     fileno = fields.Char('File Number')
-    pfa = fields.Many2one('pension.pfa', 'PFA')
-    pfc = fields.Many2one('pension.pfc','PFC')
     first_appointment_date = fields.Date('Date of First Appointment')
     present_appointment_date = fields.Date('Date of Present Appointment')
     appointment_terms = fields.Selection([

@@ -38,6 +38,7 @@
                     <field name="name"/>
                     <field name="code"/>
                     <field name="country_id"/>
+                    <field name="state_id" />
                 </tree>
             </field>
         </record>
@@ -48,9 +49,14 @@
             <field name="arch" type="xml">
                 <form string="Constituency">
                     <group>
-                        <field name="name"/>
-                        <field name="code"/>
-                        <field name="country_id" options='{"no_open": True}'/>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="country_id" options='{"no_open": True}'/>
+                            <field name="state_id" />
+                        </group>
                     </group>
                 </form>
             </field>
@@ -60,7 +66,6 @@
             <field name="name">Fed. Constituencies</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.country.constituency</field>
-            <field name="view_type">form</field>
             <field name="view_id" ref="view_country_constituency_tree"/>
             <field name="help">You can manage the different federal constituencies you are working on from here. Each constituency is attached to one country.</field>
         </record>
