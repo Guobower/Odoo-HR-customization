@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- State Action -->
+        <record id="action_res_state" model="ir.actions.act_window">
+            <field name="name">State</field>
+            <field name="res_model">res.country.state</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- State - Constituency - LGA Menu -->
+        <record id="menu_lga_parent" model="ir.ui.menu">
+            <field name="name">LGA / Constituency</field>
+            <field name="sequence" eval="111" />
+            <field name="parent_id" ref="base.menu_administration" />
+            <field name="groups_id" eval="[(6, False, [ref('base.group_no_one')])]" />
+        </record>
+
+        <!-- State Menu -->
+        <record id="menu_state" model="ir.ui.menu">
+            <field name="name">State</field>
+            <field name="action" ref="action_res_state"/>
+            <field name="sequence" eval="1"/>
+            <field name="parent_id" ref="menu_lga_parent"/>
+        </record>
+
+        <!-- LGA Menu -->
+        <record id="menu_lga" model="ir.ui.menu">
+            <field name="name">LGA</field>
+            <field name="action" ref="action_res_state_lga"/>
+            <field name="sequence" eval="2"/>
+            <field name="parent_id" ref="menu_lga_parent"/>
+        </record>
+
+        <!-- Federal Constituency Menu -->
+        <record id="menu_fed_constituency" model="ir.ui.menu">
+            <field name="name">Constituency</field>
+            <field name="action" ref="action_country_constituency"/>
+            <field name="sequence" eval="3"/>
+            <field name="parent_id" ref="menu_lga_parent"/>
+        </record>
+    </data>
+</odoo>

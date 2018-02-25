@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!--Add constituency field to the employee form view-->
+		<record id="extended_hr_employee_form_view" model="ir.ui.view">
+			<field name="name">HR Employee Form View Extension</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr_additional_fields.custom_hr_fields_form"/>
+			<field name="arch" type="xml">
+
+                <xpath expr="///group[@name='qualifications']" position="after">
+                    <group name='designation'>
+                        <field name="designation_id"/>
+                    </group>
+                </xpath>
+                
+                <xpath expr="///group[@name='stateoforigin']" position="after">
+                 	<group name='constituency'>
+                    	<field name="constituency_id"/>
+                	</group>
+                    
+                    <group name='lga'>
+                        <field name="lga_id"/>
+                    </group> 
+                   
+                </xpath>
+            
+            </field>
+        </record>
+
+		<!-- Constituency -->
+        <record id="view_country_constituency_tree" model="ir.ui.view">
+            <field name="name">res.country.constituency.tree</field>
+            <field name="model">res.country.constituency</field>
+            <field name="arch" type="xml">
+                <tree string="Constituency">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="country_id"/>
+                    <field name="state_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_country_constituency_form" model="ir.ui.view">
+            <field name="name">res.country.constituency.form</field>
+            <field name="model">res.country.constituency</field>
+            <field name="arch" type="xml">
+                <form string="Constituency">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="country_id" options='{"no_open": True}'/>
+                            <field name="state_id" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_country_constituency" model="ir.actions.act_window">
+            <field name="name">Fed. Constituencies</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.country.constituency</field>
+            <field name="view_id" ref="view_country_constituency_tree"/>
+            <field name="help">You can manage the different federal constituencies you are working on from here. Each constituency is attached to one country.</field>
+        </record>
+    </data> 
+</odoo>
