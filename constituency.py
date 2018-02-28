@@ -22,7 +22,7 @@ class Constituency(models.Model):
     _description = "Country constituency"
     _order = 'code'    
     country_id = fields.Many2one('res.country', string='Country', required=True)
-    state_id = fields.Many2one('res.country.state', string='State', required=True)
+    state_id = fields.Many2one('res.country.state', string='State', required=False)
     name = fields.Char(string='Constituency', required=True,
                help='Federal Constituencies in the Country. E.g. Ado-Odo/Ota, Boluwaduro/Ifedayo/Ila')
     code = fields.Char(string='Constituency Code', help='The state code.', required=True)
