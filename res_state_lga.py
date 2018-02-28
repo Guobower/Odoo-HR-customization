@@ -37,7 +37,7 @@ class Lga(models.Model):
 class Employee(models.Model):
     """This body of code add the constituency field to the hr.employee model"""
     _inherit = 'hr.employee'
-    lga_id = fields.Many2one('res.state.lga', string='LGA')
+    lga_id = fields.Many2one('res.state.lga', string='LGA', domain="[('state_id','=', stateoforigin)]")
 
 class State(models.Model):
     """Return a default country for the country_id"""

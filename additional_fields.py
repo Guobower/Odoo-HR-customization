@@ -38,8 +38,14 @@ class hr_employee(models.Model):
         ('sixteen','Grade Level 16'),
         ('seventeen','Grade Level 17')
         ],'Salary Grade Level')
+
+    def default_country(self):
+        country_obj = self.env['res.country']
+        def_country = country_obj.search([('name','like','Nigeria')]).id
+        return def_country if def_country else False
+
     domicile = fields.Char('Registered Domicile')
-    nationality = fields.Many2one('res.country', string='Nationality', default='164')    
+    nationality = fields.Many2one('res.country', string='Nationality', default=default_country)
     stateoforigin = fields.Many2one('res.country.state','State Of Origin', domain="[('country_id', '=', nationality)]")
     languages_spoken = fields.Char('Languages Spoken')
     name_of_spouse = fields.Char('Name of Spouse')
