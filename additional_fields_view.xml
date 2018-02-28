@@ -8,14 +8,27 @@
         	<field name="arch" type="xml">
             		<xpath expr="/tree/field[@name='name']" position="after">
 						<field name="gender"/>
-						<field name="fileno" string="Personal File No."/>
-					</xpath>
-					<xpath expr="/tree/field[@name='job_id']" position="after">
+                        <field name="designation_id" />
                         <field name="birthday"/>
-                        <field name="first_appointment_date"/>
-                        <field name="date_retirement"/>						
+                        <field name="stateoforigin" />
+                        <field name="lga_id" />
+                        <field name="first_appointment_date" />
+                        <field name="present_appointment_date" />
+                        <field name="date_retirement"/>
 					</xpath>
                     <field name='department_id' position='attributes'>
+                        <attribute name="invisible">1</attribute>
+                    </field>
+                    <field name='work_phone' position='attributes'>
+                        <attribute name="invisible">1</attribute>
+                    </field>
+                    <field name='work_email' position='attributes'>
+                        <attribute name="invisible">1</attribute>
+                    </field>
+                    <field name='parent_id' position='attributes'>
+                        <attribute name="invisible">1</attribute>
+                    </field>
+                    <field name='job_id' position='attributes'>
                         <attribute name="invisible">1</attribute>
                     </field>
         	</field>
