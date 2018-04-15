@@ -26,7 +26,7 @@ class Lga(models.Model):
 
     country_id = fields.Many2one("res.country", "Country", default=_get_default_country)
     state_id = fields.Many2one('res.country.state', string='State', required=True, domain="[('country_id','=',country_id)]")
-    constituency_id = fields.Many2one('res.country.constituency', string='Fed. constituency', domain="[('state_id','=',state_id)]")
+    # constituency_id = fields.Many2one('res.country.constituency', string='Fed. constituency', domain="[('state_id','=',state_id)]")
     name = fields.Char(string='LGA', required=True,
                help='Local Governments e.g. Odo-Otin, Boluwaduro')
     name_search = location_name_search

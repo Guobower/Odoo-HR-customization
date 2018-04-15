@@ -65,6 +65,7 @@ class hr_employee(models.Model):
     commendation_ids = fields.One2many('employee.commendation','employee_id', string='Commendation')
     censure_ids = fields.One2many("employee.censure",'employee_id', string='Censure')
     remarks = fields.Text("Remarks")
+    station = fields.Char('Station of Deployment')
 
     @api.one
     @api.depends('first_appointment_date', 'birthday')
@@ -80,7 +81,6 @@ class hr_employee(models.Model):
     		self.date_retirement = fields.Date.to_string(date_retirement_string1) 
 
     	# Compute the date of retirement using only the date of first appointment
-
     	#else if 
     	if self.first_appointment_date:
     		appointment_date = fields.Date.from_string(self.first_appointment_date)
@@ -102,10 +102,17 @@ class employee_nextofkin(models.Model):
     _name = "employee.nextofkin"
     image = fields.Binary('Passport')
     name = fields.Char('Name')
-    rel_staff = fields.Char("Relationship of Next of Kin")
+    rel_staff = fields.Many2one(comodel_name="relationship.employee", string="Relationship of Next of Kin")
     mobile_phone = fields.Char('GSM No.', readonly=False)   
     address = fields.Char('Street Name/Address')
     emp_nextofkin = fields.Many2one('hr.employee','Employee')
+
+class relationship_employee(models.Model):
+    """Defines relationship shared with next of kins etc"""
+    _name = 'relationship.employee'
+    _description = 'Employee\'s Relationships'
+
+    name = fields.Char("Name")
 
 class educational_history(models.Model):
     _name = "educational.history"
@@ -131,24 +138,9 @@ class promotion_records(models.Model):
         ('promotion','Promotion'),
         ('transfer','Transfer')
         ],'Type')
-    designation_from = fields.Selection([
-        ('chief_adm_officer','Chief Admin Officer'),
-        ('assit_chief_adm_officer','Assistant Chief Admin Officer'),
-        ('principal','Principal'),
-        ('senior','Senior'),
-        ('officer_i','Officer I'),
-        ('officer_ii','Officer II')
-        ],'Designation(From)')
-    designation_from_date = fields.Date('Date')
-    designation_to = fields.Selection([
-        ('chief_adm_officer','Chief Admin Officer'),
-        ('assit_chief_adm_officer','Assistant Chief Admin Officer'),
-        ('principal','Principal'),
-        ('senior','Senior'),
-        ('officer_i','Officer I'),
-        ('officer_ii','Officer II')
-        ],'Designation To')
-    designation_to_date = fields.Date('Date')
+    designation_from = fields.Many2one(comodel_name="hr.job", string='From')
+    designation_to = fields.Many2one(comodel_name="hr.job", string='To')
+    date_promotion = fields.Date('Date')
     employee_id = fields.Many2one('hr.employee','Employee')
 
 class employment_medical_history(models.Model):
@@ -160,8 +152,16 @@ class employment_medical_history(models.Model):
 
 class commendation(models.Model):
     _name = "employee.commendation"
+
+    def domain(self):
+        """Return the domain for this record"""
+        current_employee = self.env.get('hr.employee').browse(self._context.get('default_employee_id'))
+        all_employees = self.env.get('hr.employee').search([])
+        diff = all_employees - current_employee
+        return [('id','in', diff.ids)]
+
     description = fields.Char('Descritption')
-    by_whom = fields.Char('By whom')
+    by_whom = fields.Many2one('hr.employee','By whom', domain=domain)
     date_commendation = fields.Date('Date', widget='date')
     result = fields.Selection([
         ('Promotion','Promotion'),
@@ -171,12 +171,21 @@ class commendation(models.Model):
 
 class censure(models.Model):
     _name = "employee.censure"
-    description = fields.Char('Descritption')
-    by_whom = fields.Char('By whom')
+
+    employee_id = fields.Many2one('hr.employee',"Employee")
+
+    def domain(self):
+        """Return the domain for this record"""
+        current_employee = self.env.get('hr.employee').browse(self._context.get('default_employee_id'))
+        all_employees = self.env.get('hr.employee').search([])
+        diff = all_employees - current_employee
+        return [('id','in', diff.ids)]
+
+    description = fields.Char('Description')
+    by_whom = fields.Many2one('hr.employee','By whom', domain=domain)
     date_censure = fields.Date('Date', widget='date')
     result = fields.Selection([
         ('Promotion','Promotion'),
         ('Demotion','Demotion'),
         ('Suspension','Suspension')
         ], 'Outcome')
-    employee_id = fields.Many2one('hr.employee',"Employee")

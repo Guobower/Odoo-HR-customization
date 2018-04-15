@@ -46,6 +46,7 @@
 	           				<field name="name" string="Name of Officer"/>
 	           				<field name="fileno" string="Personal File Number"/>
 	           				<field name="gender" string="Sex"/>
+                            <field name="job_id"/>
                             <field name="birthday"/>
 	           			</group>
 	           			<group string="Appointment:">
@@ -53,6 +54,7 @@
            					<field name="present_appointment_date"/>
                             <field name="date_retirement"/>
            					<field name="appointment_terms"/>
+                            <field name="station" />
 	           			</group>
 	           			<group name='qualifications'>
                             <field name="education_ids" string="Qualifications"/>
@@ -79,22 +81,22 @@
 	           				<field name="marital"/>
 	           			</group>
 	           			<group>
-		                    <field name="nextofkin_ids" string="Next of Kin"/>
+		                    <field name="nextofkin_ids" string="Next of Kin" context="{'default_employee_id':active_id}"/>
 		                </group>        			
 	           			<group>
 		                    <field name="department_id"/>
 		                </group>
 		                <group>
-		                    <field name="promotion_record_ids"/>
+		                    <field name="promotion_record_ids" context="{'default_employee_id':active_id}"/>
 		                </group>
 		                <group>
-		                    <field name="medical_history_ids"/>
+		                    <field name="medical_history_ids" context="{'default_employee_id':active_id}"/>
 		                </group>
 		                <group>
-		                    <field name="commendation_ids"/>
+		                    <field name="commendation_ids" context="{'default_employee_id':active_id}" />
 		                </group>
 		                <group>
-		                   <field name='censure_ids'/>
+		                   <field name='censure_ids' context="{'default_employee_id':active_id}"/>
 		                </group>
 		                <group>
 		                    <field name='remarks'/>
@@ -209,9 +211,8 @@
                     <tree>
                         <field name='type'/>                            
                         <field name='designation_from'/>
-                        <field name='designation_from_date'/>
                         <field name='designation_to'/>
-                        <field name='designation_to_date'/>
+                        <field name='date_promotion'/>
                     </tree>
                 </field>    
         </record>
@@ -229,10 +230,8 @@
                                 <!--Second Column-->
                                 <div class="col-xs-2"><strong>From</strong></div>
                                 <!--Third Column-->
-                                <div class="col-xs-2"><strong>Date</strong></div>
-                                <!--Fourth Column-->
                                 <div class="col-xs-2"><strong>To</strong></div>
-                                <!--Fifth Column-->
+                                <!--Fourth Column-->
                                 <div class="col-xs-2"><strong>Date</strong></div>
                             </div>
 
@@ -243,17 +242,15 @@
                                 <!--Second Column-->
                                 <div class="col-xs-2"><field name='designation_from'/></div>
                                 <!--Third Column-->                                
-                                <div class="col-xs-2"><field name='designation_from_date'/></div>
-                                <!--Fourth Column-->
                                 <div class="col-xs-2"><field name='designation_to'/></div>
-                                <!--Fifth Column-->
-                                <div class="col-xs-2"><field name='designation_to_date'/></div>
+                                <!--Fourth Column-->
+                                <div class="col-xs-2"><field name='date_promotion'/></div>
                             </div>
 
                         </sheet>
                     </form>
                 </field>    
-        </record>
+        </record><div class="col-xs-2"><field name='designation_to'/></div>
 
         <record id="medical_history_tree_view" model='ir.ui.view'>
             <field name='name'>medical.history.tree.view</field>
@@ -305,7 +302,7 @@
                                 <field name='description'/>
                                 <field name='by_whom'/>                                
                                 <field name='date_commendation'/>
-                                <!--<field name='result'/>-->
+                                <field name='employee_id'/>
                             </group>
                         </tree>
                     </form>
@@ -334,6 +331,7 @@
                                 <field name='description'/>
                                 <field name='by_whom'/>                                
                                 <field name='date_censure'/>
+                                <field name='employee_id'/>
                             </group>
                         </tree>
                     </form>
