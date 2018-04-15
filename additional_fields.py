@@ -74,7 +74,7 @@ class hr_employee(models.Model):
     	"""
         If only the birthday is supplied, calculate the date of retirement based on this field only
         """	
-    	if self.birthday:
+    	if self.birthday and not self.first_appointment_date:
     		birthday_date = fields.Date.from_string(self.birthday)
     		add_max_age = birthday_date.year + 60
     		date_retirement_string1 = birthday_date.replace(year=add_max_age)
@@ -82,7 +82,7 @@ class hr_employee(models.Model):
 
     	# Compute the date of retirement using only the date of first appointment
     	#else if 
-    	if self.first_appointment_date:
+    	if self.first_appointment_date and not self.birthday:
     		appointment_date = fields.Date.from_string(self.first_appointment_date)
     		add_year_of_service = appointment_date.year + 35
     		date_retirement_string2 = appointment_date.replace(year=add_year_of_service)
