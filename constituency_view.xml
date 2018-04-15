@@ -16,14 +16,14 @@
                 </xpath>
                 
                 <xpath expr="///group[@name='stateoforigin']" position="after">
+
                  	<group name='constituency'>
                     	<field name="constituency_id"/>
                 	</group>
                     
                     <group name='lga'>
                         <field name="lga_id"/>
-                    </group> 
-                   
+                    </group>                   
                 </xpath>
             
             </field>
@@ -69,5 +69,6 @@
             <field name="view_id" ref="view_country_constituency_tree"/>
             <field name="help">You can manage the different federal constituencies you are working on from here. Each constituency is attached to one country.</field>
         </record>
+        
     </data> 
 </odoo>

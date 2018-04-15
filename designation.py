@@ -23,10 +23,20 @@ class Designation(models.Model):
     _order = 'code' 
     name = fields.Char(string='Designation', required=True,
                help='Designation of Employees. E.g. Director, Deputy Director, etcetera.')
-    code = fields.Char(string='Designation Code', help='Designation code.', required=True)
+    code = fields.Char(string='Designation Code', help='Designation code.')
 
     name_search = location_name_search
 
+    _sql_constraints = [
+        ('code_uniq', 'unique(code)', 'The code of the designation must be unique!')
+    ]
+
+class Designation(models.Model):
+    """."""
+
+    _inherit = 'hr.job'    
+    code = fields.Char(string='Designation Code', help='Designation code.')
+    name_search = location_name_search
     _sql_constraints = [
         ('code_uniq', 'unique(code)', 'The code of the designation must be unique!')
     ]
