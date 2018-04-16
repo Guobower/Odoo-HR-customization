@@ -11,17 +11,17 @@
         -retirement management
         - pension management 
     """,
-    "depends" : ["base","hr","hr_payroll"],
-    "data" : [
-            "views/additional_fields_view.xml",
-            "views/designation_view.xml",
-            "views/constituency_view.xml",
-            "views/res_state_lga_view.xml",
-            "data/menus.xml",
+    "depends": ["base","hr","hr_payroll"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/additional_fields_view.xml",
+        "views/designation_view.xml",
+        "views/constituency_view.xml",
+        "views/res_state_lga_view.xml",
+        "data/menus.xml",
     ],
     "installable": True,
     "auto_install": False,
     "application": True,
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
