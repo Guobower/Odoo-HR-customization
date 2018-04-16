@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_censure,employee_censure,model_employee_censure,,1,1,1,0
+access_employee_commendation,employee_commendation,model_employee_commendation,,1,1,1,0
+access_employee_nextofkin,employee_nextofkin,model_employee_nextofkin,,1,1,1,0
+access_employee_referees,employee_referees,model_employee_referees,,1,1,1,0
+access_employee_designation,employee_designation,model_hr_employee_designation,,1,1,1,0
+access_employee_relationship,relationship_employee,model_relationship_employee,,1,1,1,0
+access_employee_educational_history,educational_history,model_educational_history,,1,1,1,0
+access_employee_medical_history,medical_history,model_medical_history,,1,1,1,0
+access_res_country_constituency,res_country_constituency,model_res_country_constituency,,1,1,1,0
+access_res_state_lga,res_state_lga,model_res_state_lga,,1,1,1,0
+access_promotion_records,access_promotion_records,model_promotion_records,,1,0,0,0
+access_employee_censure,access_employee_censure,model_employee_censure,,1,0,0,0
