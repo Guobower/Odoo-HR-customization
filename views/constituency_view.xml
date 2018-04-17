@@ -7,25 +7,15 @@
 			<field name="name">HR Employee Form View Extension</field>
 			<field name="model">hr.employee</field>
 			<field name="inherit_id" ref="hr_additional_fields.custom_hr_fields_form"/>
-			<field name="arch" type="xml">
-
-                <xpath expr="///group[@name='qualifications']" position="after">
-                    <group name='designation'>
-                        <field name="designation_id"/>
-                    </group>
-                </xpath>
-                
+			<field name="arch" type="xml">                
                 <xpath expr="///group[@name='stateoforigin']" position="after">
-
                  	<group name='constituency'>
                     	<field name="constituency_id"/>
-                	</group>
-                    
+                	</group>                    
                     <group name='lga'>
                         <field name="lga_id"/>
                     </group>                   
-                </xpath>
-            
+                </xpath>            
             </field>
         </record>
 
