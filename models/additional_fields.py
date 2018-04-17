@@ -88,15 +88,26 @@ class hr_employee(models.Model):
     		date_retirement_string2 = appointment_date.replace(year=add_year_of_service)
     		self.date_retirement = fields.Date.to_string(date_retirement_string2)
 
-    	# If both the birtday and the date of first appointment are supplied, compute the date of retirement based on the two
-
     	#else
+        # If both the birthday and the date of first appointment are supplied, compute the date of retirement based on the two
     	if self.birthday and self.first_appointment_date:
-    		if date_retirement_string1 < date_retirement_string2:
-    			self.date_retirement = fields.Date.to_string(date_retirement_string1)
-    		else:
-    			self.date_retirement = fields.Date.to_string(date_retirement_string2)
-        
+
+            # By birth
+            date_birth = fields.Date.from_string(self.birthday)
+            length_by_age = date_birth.year + 60
+            string_date_retirement_by_birth = date_birth.replace(year=length_by_age)
+            date_retirement_by_birth = fields.Date.to_string(string_date_retirement_by_birth)
+
+            # By years of service
+            date_first_appoint = fields.Date.from_string(self.first_appointment_date)
+            length_by_service = date_first_appoint.year + 35
+            string_date_retirement_by_appoint = date_first_appoint.replace(year=length_by_service)
+            date_retirement_by_appoint = fields.Date.to_string(string_date_retirement_by_appoint)
+
+            #Compare the smaller of the dates and use as the retirement date
+            self.date_retirement = date_retirement_by_birth if date_retirement_by_birth < date_retirement_by_appoint \
+            else date_retirement_by_appoint
+
     	
 class employee_nextofkin(models.Model):
     _name = "employee.nextofkin"
