@@ -9,7 +9,6 @@
         	<field name="arch" type="xml">
         		<xpath expr="/tree/field[@name='name']" position="after">
 					<field name="gender"/>
-                    <field name="designation_id" />
                     <field name="birthday"/>
                     <field name="stateoforigin" />
                     <field name="lga_id" />
@@ -46,7 +45,7 @@
            				<field name="name" string="Name of Officer"/>
            				<field name="fileno" string="Personal File Number"/>
            				<field name="gender" string="Sex"/>
-                        <field name="job_id"/>
+                        <field name="job_id" string="Designation"/>
                         <field name="birthday"/>
            			</group>
            			<group string="Appointment:">
